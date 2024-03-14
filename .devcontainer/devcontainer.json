@@ -7,5 +7,13 @@
     "vscode": {
       "extensions": ["dbaeumer.vscode-eslint", "ms-azuretools.vscode-docker"]
     }
-  }
+  },
+  "postCreateCommand": "bun install",
+  "mounts": [
+    "type=bind,source=/home/${localEnv:USER}/.ssh,target=/root/.ssh,readonly"
+  ],
+  "features": {
+    "git": "os-provided",
+    "sshd": "latest"
+},
 }
