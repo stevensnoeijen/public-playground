@@ -8,10 +8,7 @@
       "extensions": ["dbaeumer.vscode-eslint", "ms-azuretools.vscode-docker"]
     }
   },
-  "postCreateCommand": "bun install",
-  "mounts": [
-    "type=bind,source=/home/${localEnv:USER}/.ssh,target=/root/.ssh,readonly"
-  ],
+  "postCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && bun install",
   "features": {
     "git": "os-provided",
     "sshd": "latest"
