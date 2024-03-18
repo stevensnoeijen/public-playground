@@ -1,6 +1,7 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
 import { DumbGuard, DumbValue } from './nest-decorator';
+import { client } from './db';
 
 @Controller()
 export class AppController {
@@ -8,7 +9,14 @@ export class AppController {
 
   // @UseGuards(DumbGuard)
   @Get()
-  getHello(@DumbValue() dumb: string): string {
+  async getHello(@DumbValue() dumb: string) {
+    try {
+      const res = await client.query('SELECT NOW() as now');
+      console.log('time is ' + res.rows[0].now);
+    } catch (error) {
+      console.error(error);
+    }
+
     console.log('dumb:' + dumb);
     return this.appService.getHello();
   }

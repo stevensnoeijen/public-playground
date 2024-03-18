@@ -10,7 +10,7 @@
   },
   "postCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && bun install",
   "features": {
-    "git": "os-provided",
-    "sshd": "latest"
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/sshd:1": {}
 },
 }
