@@ -4,7 +4,10 @@
   "workspaceFolder": "/workspace",
   "customizations": {
     "vscode": {
-      "extensions": ["dbaeumer.vscode-eslint"]
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "mhutchie.git-graph"
+      ]
     }
   },
   "postCreateCommand": "git config --global --add safe.directory /workspace && pnpm install",
