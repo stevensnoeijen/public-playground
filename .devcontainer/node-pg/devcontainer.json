@@ -1,6 +1,6 @@
 {
-  "dockerComposeFile": "docker-compose.yml",
   "name": "node-pg",
+  "dockerComposeFile": "docker-compose.yml",
   "service": "devcontainer",
   "workspaceFolder": "/workspace",
   "customizations": {

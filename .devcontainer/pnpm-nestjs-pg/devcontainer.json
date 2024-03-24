@@ -1,13 +1,11 @@
 {
+  "name": "pnpm-nestjs-pg",
   "dockerComposeFile": "docker-compose.yml",
   "service": "devcontainer",
   "workspaceFolder": "/workspace",
   "customizations": {
     "vscode": {
-      "extensions": [
-        "dbaeumer.vscode-eslint",
-        "mhutchie.git-graph"
-      ]
+      "extensions": ["dbaeumer.vscode-eslint", "mhutchie.git-graph"]
     }
   },
   "postCreateCommand": "git config --global --add safe.directory /workspace && pnpm install",
