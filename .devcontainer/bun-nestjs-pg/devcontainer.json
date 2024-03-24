@@ -5,7 +5,16 @@
   "workspaceFolder": "/workspace",
   "customizations": {
     "vscode": {
-      "extensions": ["dbaeumer.vscode-eslint", "ms-azuretools.vscode-docker"]
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "mhutchie.git-graph",
+        "streetsidesoftware.code-spell-checker"
+      ],
+      "settings": {
+        "cSpell.ignorePaths": [
+          ".devcontainer"
+        ]
+      }
     }
   },
   "postCreateCommand": "git config --global --add safe.directory /workspace && cd apps/bun-nestjs-pg/ && bun install",
