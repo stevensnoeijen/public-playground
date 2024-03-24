@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Launch nodejs",
             "skipFiles": [
                 "<node_internals>/**"
             ],
@@ -15,6 +15,13 @@
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
+        },
+        {
+            "type": "bun",
+            "request": "launch",
+            "name": "Launch bun",
+            "program": "${workspaceFolder}/apps/bun-nestjs-pg/src/main.ts",
+            "runtime": "bun"
         }
     ]
 }

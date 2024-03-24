@@ -8,7 +8,8 @@
       "extensions": [
         "dbaeumer.vscode-eslint",
         "mhutchie.git-graph",
-        "streetsidesoftware.code-spell-checker"
+        "streetsidesoftware.code-spell-checker",
+        "oven.bun-vscode"
       ],
       "settings": {
         "cSpell.ignorePaths": [
@@ -21,5 +22,6 @@
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},
     "ghcr.io/devcontainers/features/sshd:1": {}
-  }
+  },
+  "forwardPorts": [3306]
 }
