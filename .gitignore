@@ -178,3 +178,6 @@ dist
 .turbo
 build/**
 dist/**
+
+# pnpm
+.pnpm-store/

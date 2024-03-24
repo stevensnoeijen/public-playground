@@ -1,9 +1,6 @@
 {
   "name": "playground",
-  "scripts": {
-    "dev": "turbo run dev",
-    "test": "turbo run test"
-  },
+  "scripts": {},
   "workspaces": [
     "packages/*",
     "apps/*"
