@@ -2,10 +2,28 @@ version: "3.8"
 services:
   devcontainer:
     image: mcr.microsoft.com/vscode/devcontainers/javascript-node:20-bullseye
+    network_mode: host
     volumes:
       - ../..:/workspace:cached
-    network_mode: service:db
     command: sleep infinity
+    environment:
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+    depends_on:
+      - db
+      - localstack
+
+  localstack:
+    image: localstack/localstack:latest
+    network_mode: host
+    ports:
+      - 4566:4566
+    environment:
+      - DEBUG=1
+    volumes:
+      - .docker/localstack:/var/lib/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./localstack-setup.sh:/etc/localstack/init/ready.d/script.sh
 
   db:
     extends:

@@ -181,3 +181,6 @@ dist/**
 
 # pnpm
 .pnpm-store/
+
+# docker
+.docker
