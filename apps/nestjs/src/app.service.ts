@@ -13,16 +13,19 @@ export class AppService {
     });
   }
 
-  async getHello() {
+  getHello() {
+    return 'Hello World!';
+  }
+
+  async getDbTime() {
     const dbResult = await client.query('SELECT NOW() as now');
+
+    return dbResult.rows[0].now;
+  }
+
+  async getNumberOfBuckets() {
     const buckets = await this.s3.listBuckets();
 
-    return (
-      'Hello World! it is' +
-      dbResult.rows[0].now +
-      ' and there are ' +
-      (buckets.Buckets?.length ?? 0) +
-      ' buckets on localstack'
-    );
+    return buckets.Buckets?.length ?? 0;
   }
 }
