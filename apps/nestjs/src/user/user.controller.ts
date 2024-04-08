@@ -1,11 +1,11 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { DrizzleService } from '../drizzle/drizzle.service';
 import { CreateUserDto } from './dto/createUser.dto';
-import { UserTable } from 'src/drizzle/schema';
+import { UserTable } from '../drizzle/schema';
 
 @Controller('users')
 export class UserController {
-  constructor(private readonly drizzleService: DrizzleService) {}
+  constructor(private readonly drizzleService: DrizzleService) { }
 
   @Get()
   async getAll() {

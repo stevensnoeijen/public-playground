@@ -9,12 +9,15 @@
       "extensions": [
         "dbaeumer.vscode-eslint",
         "mhutchie.git-graph",
-        "streetsidesoftware.code-spell-checker"
+        "streetsidesoftware.code-spell-checker",
+        "esbenp.prettier-vscode"
       ],
       "settings": {
         "cSpell.ignorePaths": [
           ".devcontainer"
-        ]
+        ],
+        "javascript.preferences.importModuleSpecifier": "relative",
+        "typescript.preferences.importModuleSpecifier": "relative"
       }
     }
   },
@@ -23,5 +26,7 @@
     "ghcr.io/devcontainers/features/git:1": {},
     "ghcr.io/devcontainers/features/sshd:1": {}
   },
-  "forwardPorts": [3306]
+  "forwardPorts": [
+    3306
+  ]
 }
