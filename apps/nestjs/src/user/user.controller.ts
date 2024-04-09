@@ -37,7 +37,7 @@ export class UserController {
       .insert(UserTable)
       .values(body)
       .onConflictDoUpdate({
-        target: UserTable.id,
+        target: UserTable.email,
         set: body,
       })
       .returning();
