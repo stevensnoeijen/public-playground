@@ -1,1 +1,0 @@
-If localstack init script fails, execute: `chmod +x ./devcontainer/node-pg/localstack-setup.sh`

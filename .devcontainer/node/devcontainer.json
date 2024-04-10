@@ -1,5 +1,5 @@
 {
-  "name": "node-pg",
+  "name": "playground-node",
   "dockerComposeFile": "docker-compose.yml",
   "containerUser": "node",
   "service": "devcontainer",

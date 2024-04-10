@@ -1,7 +1,9 @@
 version: "3.8"
 services:
   devcontainer:
-    image: mcr.microsoft.com/devcontainers/javascript-node:20-bullseye
+    build:
+      context: .
+      dockerfile: Dockerfile
     network_mode: host
     volumes:
       - ../..:/workspace:cached
