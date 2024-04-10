@@ -1,3 +1,7 @@
+# Node devcontainer
+
 Has both node and pnpm installed.
 
-If localstack init script fails, execute: `chmod +x ./devcontainer/node-pg/localstack-setup.sh`
+## Known issues
+
+If localstack init script fails, execute: `chmod +x ./.devcontainer/node/localstack-setup.sh` (locally, not in devcontainer).
