@@ -10,10 +10,7 @@
         "mhutchie.git-graph",
         "streetsidesoftware.code-spell-checker",
         "oven.bun-vscode"
-      ],
-      "settings": {
-        "cSpell.ignorePaths": [".devcontainer"]
-      }
+      ]
     }
   },
   "postCreateCommand": "git config --global --add safe.directory /workspace && cd apps/bun-nestjs-pg/ && bun install",
@@ -21,5 +18,7 @@
     "ghcr.io/devcontainers/features/git:1": {},
     "ghcr.io/devcontainers/features/sshd:1": {}
   },
-  "forwardPorts": [3306]
+  "forwardPorts": [
+    3306
+  ]
 }
