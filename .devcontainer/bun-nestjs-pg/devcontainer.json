@@ -12,9 +12,7 @@
         "oven.bun-vscode"
       ],
       "settings": {
-        "cSpell.ignorePaths": [
-          ".devcontainer"
-        ]
+        "cSpell.ignorePaths": [".devcontainer"]
       }
     }
   },

@@ -10,17 +10,17 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
+import { ApiQuery } from '@nestjs/swagger';
+import { eq } from 'drizzle-orm';
 import { DrizzleService } from '../drizzle/drizzle.service';
+import { UserTable } from '../drizzle/schema';
 import { CreateUserDto } from './dto/createUser.dto';
 import { UpdateUserDto } from './dto/updateUser.dto';
 import { UserQuery } from './dto/user.query';
-import { UserTable } from '../drizzle/schema';
-import { eq } from 'drizzle-orm';
-import { ApiQuery } from '@nestjs/swagger';
 
 @Controller('users')
 export class UserController {
-  constructor(private readonly drizzleService: DrizzleService) { }
+  constructor(private readonly drizzleService: DrizzleService) {}
 
   @Get()
   @ApiQuery({ name: 'limit', required: false, type: Number })

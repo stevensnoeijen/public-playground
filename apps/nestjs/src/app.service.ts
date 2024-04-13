@@ -1,6 +1,6 @@
+import * as AWS from '@aws-sdk/client-s3';
 import { Injectable } from '@nestjs/common';
 import { client } from './db';
-import * as AWS from '@aws-sdk/client-s3';
 
 @Injectable()
 export class AppService {

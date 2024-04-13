@@ -1,27 +1,23 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch nodejs",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}/apps/nestjs/src/main.ts",
-            "outFiles": [
-                "${workspaceFolder}/**/*.js"
-            ]
-        },
-        {
-            "type": "bun",
-            "request": "launch",
-            "name": "Launch bun",
-            "program": "${workspaceFolder}/apps/bun-nestjs-pg/src/main.ts",
-            "runtime": "bun"
-        }
-    ]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch nodejs",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/apps/nestjs/src/main.ts",
+      "outFiles": ["${workspaceFolder}/**/*.js"]
+    },
+    {
+      "type": "bun",
+      "request": "launch",
+      "name": "Launch bun",
+      "program": "${workspaceFolder}/apps/bun-nestjs-pg/src/main.ts",
+      "runtime": "bun"
+    }
+  ]
 }

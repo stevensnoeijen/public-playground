@@ -31,8 +31,7 @@
       "node_modules",
       "**/node_modules",
       ".pnpm-store",
-      ".turbo",
-      "apps/bun-nestjs-pg/*"
+      ".turbo"
     ]
   },
   "overrides": [
