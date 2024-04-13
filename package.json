@@ -1,11 +1,14 @@
 {
   "name": "playground",
-  "scripts": {},
+  "scripts": {
+    "lint": "biome lint ."
+  },
   "workspaces": [
     "packages/*",
     "apps/*"
   ],
   "devDependencies": {
+    "@biomejs/biome": "1.6.4",
     "turbo": "^1.12.5"
   }
 }

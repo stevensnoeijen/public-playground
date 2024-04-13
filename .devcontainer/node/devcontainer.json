@@ -10,14 +10,16 @@
         "dbaeumer.vscode-eslint",
         "mhutchie.git-graph",
         "streetsidesoftware.code-spell-checker",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "biomejs.biome"
       ],
       "settings": {
         "cSpell.ignorePaths": [
           ".devcontainer"
         ],
         "javascript.preferences.importModuleSpecifier": "relative",
-        "typescript.preferences.importModuleSpecifier": "relative"
+        "typescript.preferences.importModuleSpecifier": "relative",
+        "editor.defaultFormatter": "biomejs.biome"
       }
     }
   },
