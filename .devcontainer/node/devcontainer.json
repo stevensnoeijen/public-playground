@@ -9,7 +9,6 @@
       "extensions": [
         "mhutchie.git-graph",
         "streetsidesoftware.code-spell-checker",
-        "esbenp.prettier-vscode",
         "biomejs.biome"
       ],
       "settings": {
