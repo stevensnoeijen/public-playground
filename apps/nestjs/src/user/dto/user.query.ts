@@ -5,5 +5,5 @@ export class UserQuery {
   @IsOptional()
   @Type(() => Number)
   @IsInt()
-  limit: number = 10;
+  limit = 10;
 }

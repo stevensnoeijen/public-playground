@@ -3,11 +3,11 @@ import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) { }
 
   @Get()
   @Redirect('/swagger')
-  getIndex() {}
+  getIndex() { }
 
   @Get('/hello-world')
   getHello() {
@@ -22,6 +22,6 @@ export class AppController {
   @Get('/number-of-buckets')
   async getBuckets() {
     const numberOfBuckets = await this.appService.getNumberOfBuckets();
-    return 'There are ' + numberOfBuckets + ' buckets on localstack';
+    return `There are ${numberOfBuckets} buckets on localstack`;
   }
 }
