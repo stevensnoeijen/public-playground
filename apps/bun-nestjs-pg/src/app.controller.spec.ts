@@ -1,5 +1,5 @@
-import { expect, describe, it, beforeEach } from "bun:test";
-import { Test, TestingModule } from '@nestjs/testing';
+import { beforeEach, describe, expect, it } from 'bun:test';
+import { Test, type TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 

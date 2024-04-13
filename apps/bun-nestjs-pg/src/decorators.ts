@@ -1,54 +1,63 @@
 export function logHello() {
-    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-        const originalMethod = descriptor.value;
+  return (
+    target: unknown,
+    propertyKey: string,
+    descriptor: PropertyDescriptor,
+  ) => {
+    const originalMethod = descriptor.value;
 
-        descriptor.value = function () {
-            console.log('hello');
-            originalMethod();
-        }
+    descriptor.value = () => {
+      console.log('hello');
+      originalMethod();
+    };
 
-        return descriptor;
-    }
+    return descriptor;
+  };
 }
 
-function classy<T extends { new (...args: any[]): { test: boolean } }>(constructor: T) {
-    return class extends constructor {
-        constructor() {
-            super();
-            this.test = true;
-        }
-    };
+// biome-ignore lint/suspicious/noExplicitAny: Required any for using Mixin pattern in ts https://stackoverflow.com/a/64493510
+type ConstructorWithTest = new (...args: any[]) => { test: true };
+function classy<T extends ConstructorWithTest>(target: T) {
+  return class extends target {
+    declare test: true;
+  };
 }
 
-function defaultValue(value: any) {
-    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-        const originalGet = descriptor.get!;
-        descriptor.get = () => {
-            const originalValue = originalGet();
-            console.log('org' + originalValue)
-            if (originalGet == null) {
-                return value;
-            }
-            return originalValue;
-        }
+function defaultValue(value: unknown) {
+  return (
+    _target: unknown,
+    propertyKey: string,
+    descriptor: PropertyDescriptor,
+  ) => {
+    if (descriptor.get == null) throw new Error('Getter should be set');
 
-        console.log();
-        // descriptor.value = value;
+    const originalGet = descriptor.get;
+    descriptor.get = () => {
+      const originalValue = originalGet();
+      console.log(`org${originalValue}`);
+      if (originalGet == null) {
+        return value;
+      }
+      return originalValue;
     };
+
+    console.log();
+    // descriptor.value = value;
+  };
 }
 
 @classy
 export class DecoratorTest {
-    test: boolean = false;
-    private _nullable = null;
+  test = false;
+  private _nullable = null;
 
-    @defaultValue(1)
-    get nullable()  {
-        return this._nullable;
-    }
+  @defaultValue(1)
+  get nullable() {
+    return this._nullable;
+  }
 
-    @logHello()
-    log() {
-        console.log('log');
-    }
+  @logHello()
+  log() {
+    console.log('log');
+  }
 }

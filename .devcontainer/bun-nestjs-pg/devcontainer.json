@@ -6,15 +6,20 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "dbaeumer.vscode-eslint",
         "mhutchie.git-graph",
         "streetsidesoftware.code-spell-checker",
         "oven.bun-vscode"
       ],
       "settings": {
-        "cSpell.ignorePaths": [
-          ".devcontainer"
-        ]
+        "cSpell.words": ["biomejs", "devcontainer"],
+        "editor.codeActionsOnSave": {
+          "source.organizeImports.biome": "explicit"
+        },
+        "cSpell.ignorePaths": [".devcontainer"],
+        "javascript.preferences.importModuleSpecifier": "relative",
+        "typescript.preferences.importModuleSpecifier": "relative",
+        "editor.defaultFormatter": "biomejs.biome",
+        "editor.rulers": [80]
       }
     }
   },

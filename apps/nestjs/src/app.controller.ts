@@ -1,5 +1,5 @@
 import { Controller, Get, Redirect } from '@nestjs/common';
-import { AppService } from './app.service';
+import type { AppService } from './app.service';
 
 @Controller()
 export class AppController {
@@ -22,6 +22,6 @@ export class AppController {
   @Get('/number-of-buckets')
   async getBuckets() {
     const numberOfBuckets = await this.appService.getNumberOfBuckets();
-    return 'There are ' + numberOfBuckets + ' buckets on localstack';
+    return `There are ${numberOfBuckets} buckets on localstack`;
   }
 }

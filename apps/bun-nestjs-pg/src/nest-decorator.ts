@@ -1,5 +1,10 @@
-import { createParamDecorator, ExecutionContext, type CanActivate, Injectable } from '@nestjs/common';
-import { Observable } from 'rxjs';
+import {
+  type CanActivate,
+  type ExecutionContext,
+  Injectable,
+  createParamDecorator,
+} from '@nestjs/common';
+import type { Observable } from 'rxjs';
 
 @Injectable()
 export class DumbGuard implements CanActivate {
@@ -14,8 +19,8 @@ export class DumbGuard implements CanActivate {
 }
 
 export const DumbValue = createParamDecorator(
-    (data: unknown, ctx: ExecutionContext) => {
-      const request = ctx.switchToHttp().getRequest();
-      return request.dumb ?? 'nothing';
-    },
-  );
+  (data: unknown, ctx: ExecutionContext) => {
+    const request = ctx.switchToHttp().getRequest();
+    return request.dumb ?? 'nothing';
+  },
+);
