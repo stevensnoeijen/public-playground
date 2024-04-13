@@ -12,11 +12,11 @@ import {
 } from '@nestjs/common';
 import { ApiQuery } from '@nestjs/swagger';
 import { eq } from 'drizzle-orm';
-import { DrizzleService } from '../drizzle/drizzle.service';
+import type { DrizzleService } from '../drizzle/drizzle.service';
 import { UserTable } from '../drizzle/schema';
-import { CreateUserDto } from './dto/createUser.dto';
-import { UpdateUserDto } from './dto/updateUser.dto';
-import { UserQuery } from './dto/user.query';
+import type { CreateUserDto } from './dto/createUser.dto';
+import type { UpdateUserDto } from './dto/updateUser.dto';
+import type { UserQuery } from './dto/user.query';
 
 @Controller('users')
 export class UserController {

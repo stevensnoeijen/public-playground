@@ -7,7 +7,6 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "dbaeumer.vscode-eslint",
         "mhutchie.git-graph",
         "streetsidesoftware.code-spell-checker",
         "esbenp.prettier-vscode",
