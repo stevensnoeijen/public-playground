@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.6.4/schema.json",
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "organizeImports": {
     "enabled": true
   },
@@ -26,7 +26,14 @@
     }
   },
   "files": {
-    "ignore": ["**/dist/*", "apps/bun-nestjs-pg/*"]
+    "ignore": [
+      "**/dist",
+      "node_modules",
+      "**/node_modules",
+      ".pnpm-store",
+      ".turbo",
+      "apps/bun-nestjs-pg/*"
+    ]
   },
   "overrides": [
     {
