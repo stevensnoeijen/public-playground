@@ -5,9 +5,13 @@
     "format": "biome format --write .",
     "check": "biome check --apply ."
   },
-  "workspaces": ["packages/*", "apps/*"],
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
   "devDependencies": {
     "@biomejs/biome": "1.6.4",
+    "lefthook": "^1.6.10",
     "turbo": "^1.12.5"
   }
 }
