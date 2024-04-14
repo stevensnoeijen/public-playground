@@ -11,10 +11,20 @@ updates:
     directory: "/apps/bun-nestjs-pq"
     schedule:
       interval: "monthly"
+    groups:
+      pg:
+        patterns:
+          - "pg"
+          - "@types/pg"
   - package-ecosystem: "npm"
     directory: "/apps/nestjs"
     schedule:
       interval: "monthly"
+    groups:
+      pg:
+        patterns:
+          - "pg"
+          - "@types/pg"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
