@@ -9,9 +9,6 @@
     "@types/bun": "latest",
     "@types/pg": "^8.11.2"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
   "dependencies": {
     "@nestjs/cli": "^10.3.2",
     "@nestjs/common": "^10.3.3",
