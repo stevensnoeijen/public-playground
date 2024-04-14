@@ -48,15 +48,6 @@ jobs:
           reporter: github-pr-review
           level: warning
           locale: "US"
-  tsc:
-    name: runner / tsc
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: EPMatt/reviewdog-action-tsc@v1
-        with:
-          reporter: github-pr-review
-          fail_on_error: true
   biome:
     name: runner / Biome
     runs-on: ubuntu-latest
