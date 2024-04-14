@@ -1,4 +1,4 @@
 ARG VARIANT=latest
-FROM oven/bun:${VARIANT}
+FROM oven/bun:1
 
 USER bun
