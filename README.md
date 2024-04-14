@@ -1,4 +1,5 @@
 # Playground
+[![reviewdog](https://github.com/stevensnoeijen/playground/workflows/reviewdog/badge.svg?branch=main&event=push)](https://github.com/stevensnoeijen/playground/actions?query=workflow%3Areviewdog+event%3Apush+branch%3Amain)
 
 My personal playground to try out stuff.
 Check out the directories.

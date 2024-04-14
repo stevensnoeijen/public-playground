@@ -12,7 +12,7 @@
         "biomejs.biome"
       ],
       "settings": {
-        "cSpell.words": ["biomejs", "devcontainer"],
+        "cSpell.words": ["biomejs", "devcontainer", "reviewdog"],
         "editor.codeActionsOnSave": {
           "source.organizeImports.biome": "explicit"
         },
