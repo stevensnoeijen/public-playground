@@ -1,5 +1,5 @@
 {
-  "name": "bun-nestjs-pg",
+  "name": "bun",
   "dockerComposeFile": "docker-compose.yml",
   "service": "devcontainer",
   "workspaceFolder": "/workspace",
@@ -19,7 +19,8 @@
         "javascript.preferences.importModuleSpecifier": "relative",
         "typescript.preferences.importModuleSpecifier": "relative",
         "editor.defaultFormatter": "biomejs.biome",
-        "editor.rulers": [80]
+        "editor.rulers": [80],
+        "terminal.integrated.defaultProfile.linux": "bash"
       }
     }
   },
