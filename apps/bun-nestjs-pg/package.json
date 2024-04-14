@@ -6,7 +6,7 @@
     "dev": "bun --watch src/main.ts"
   },
   "devDependencies": {
-    "@types/bun": "latest",
+    "@types/bun": "1.*",
     "@types/pg": "^8.11.2"
   },
   "dependencies": {
