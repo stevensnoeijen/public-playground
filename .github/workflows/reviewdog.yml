@@ -9,8 +9,7 @@ jobs:
       - name: shellcheck
         uses: reviewdog/action-shellcheck@v1
         with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
+          reporter: github-check
   shfmt:
     name: runner / shfmt
     runs-on: ubuntu-latest
@@ -46,8 +45,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: mongolyy/reviewdog-action-biome@v1
         with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
+          reporter: github-check
   alex:
     name: runner / alex
     runs-on: ubuntu-latest
