@@ -8,8 +8,8 @@
   "workspaces": ["packages/*", "apps/*"],
   "devDependencies": {
     "@biomejs/biome": "1.6.4",
-    "lefthook": "^1.6.10",
-    "turbo": "^1.13.2",
+    "lefthook": "1.6.10",
+    "turbo": "1.13.2",
     "typescript": "5.4.5"
   }
 }
