@@ -1,14 +1,20 @@
 import { Test } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { client } from './db';
 
 describe('AppController', () => {
   let appController: AppController;
 
   beforeEach(async () => {
     const app = await Test.createTestingModule({
-      providers: [AppService],
+      providers: [
+        {
+          provide: AppService,
+          useValue: {
+            getHello: jest.fn().mockReturnValue('Hello World!'),
+          },
+        },
+      ],
       controllers: [AppController],
     }).compile();
 
@@ -19,10 +25,5 @@ describe('AppController', () => {
     it('should return "Hello World!"', () => {
       expect(appController.getHello()).toBe('Hello World!');
     });
-  });
-
-  // should move to global teardown
-  afterAll(async () => {
-    await client.end();
   });
 });
