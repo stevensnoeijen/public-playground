@@ -84,3 +84,16 @@ jobs:
           reporter: github-pr-review
           fail_on_error: true
           workdir: apps/nestjs
+  bun:
+    name: runner / bun
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/bun-nestjs-pg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+      - run: bun install
+        working-directory: ${{env.working-directory}}
+      - run: bun build ./src/main.ts
+        working-directory: ${{env.working-directory}}
