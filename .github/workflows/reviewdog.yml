@@ -87,7 +87,8 @@ jobs:
   bun:
     name: runner / bun
     runs-on: ubuntu-latest
-    if: ${{false}} # disabled, see https://github.com/stevensnoeijen/playground/issues/50 
+    # disabled, see https://github.com/stevensnoeijen/playground/issues/50
+    if: ${{false}}
     defaults:
       run:
         working-directory: ./apps/bun-nestjs-pg
