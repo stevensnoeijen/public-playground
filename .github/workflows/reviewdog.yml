@@ -93,7 +93,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v1
+      - run: ls
       - run: bun install
-        working-directory: ${{env.working-directory}}
       - run: bun build ./src/main.ts
-        working-directory: ${{env.working-directory}}
