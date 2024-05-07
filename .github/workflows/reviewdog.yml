@@ -72,3 +72,15 @@ jobs:
         with:
           reporter: github-pr-review
           level: warning
+  tsc:
+    name: runner / tsc
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: EPMatt/reviewdog-action-tsc@v1
+        name: tsc apps/nestjs
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          fail_on_error:  true
+          workdir: apps/nestjs
