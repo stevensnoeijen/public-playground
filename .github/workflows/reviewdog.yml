@@ -15,12 +15,12 @@ jobs:
     outputs:
       ts_bun: ${{ steps.filter.outputs.ts_bun }}
     steps:
-    - uses: dorny/paths-filter@v3
-      id: filter
-      with:
-        filters: |
-          ts_bun:
-            - 'apps/bun-nestjs-pg/**'
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            ts_bun:
+              - 'apps/bun-nestjs-pg/**'
   shellcheck:
     name: runner / shellcheck
     runs-on: ubuntu-latest
