@@ -31,9 +31,6 @@ jobs:
           filters: |
             bun:
               - 'apps/bun-nestjs-pg/**'
-              - '**/bunfig.toml'
-              - 'apps/bun-nestjs-pg/package.json'
-              - '**/bun.lockb'
             shell:
               - '**/*.sh'
             ghaction:
@@ -53,6 +50,7 @@ jobs:
               - '**/*.css'
               - *yaml
               - '**/*.graphql'
+              - 'apps/bun-nestjs-pg/**'
             markdown:
               - '**/*.{md,mdx,markdown}'
   shellcheck:
@@ -164,7 +162,7 @@ jobs:
           flags: apps/nestjs
   bun:
     name: bun build
-    needs: detect_changes
+    needs: biome
     if: ${{ needs.detect_changes.outputs.bun == 'true' }}
     runs-on: ubuntu-latest
     defaults:
