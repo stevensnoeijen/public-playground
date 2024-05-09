@@ -27,6 +27,10 @@ jobs:
               - 'apps/bun-nestjs-pg/**'
             shell:
               - '**/*.sh'
+            ghaction:
+              - '.github/workflows/*.{yaml,yml}'
+            yaml:
+            - '**/*.{yaml,yml}'
   shellcheck:
     name: shellcheck
     needs: detect_changes
@@ -40,12 +44,16 @@ jobs:
           reporter: github-pr-review
   shfmt:
     name: shfmt
+    needs: detect_changes
+    if: ${{ needs.detect_changes.outputs.shell == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: reviewdog/action-shfmt@v1
   actionlint:
     name: actionlint
+    needs: detect_changes
+    if: ${{ needs.detect_changes.outputs.ghaction == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -55,6 +63,8 @@ jobs:
           level: warning
   yamllint:
     name: yamllint
+    needs: detect_changes
+    if: ${{ needs.detect_changes.outputs.yaml == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
