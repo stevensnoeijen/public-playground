@@ -15,6 +15,11 @@ jobs:
     outputs:
       bun: ${{ steps.filter.outputs.bun }}
       shell: ${{ steps.filter.outputs.shell }}
+      ghaction: ${{ steps.filter.outputs.ghaction }}
+      yaml: ${{ steps.filter.outputs.yaml }}
+      ts_js: ${{ steps.filter.outputs.ts_js }}
+      biome_supported: ${{ steps.filter.outputs.biome_supported }}
+      markdown: ${{ steps.filter.outputs.markdown }}
     steps:
       - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v3
