@@ -1,5 +1,5 @@
 ---
-name: reviewdog
+name: CI
 on:  # yamllint disable-line rule:truthy
   pull_request:
   push:
@@ -13,7 +13,8 @@ jobs:
     permissions:
       pull-requests: read
     outputs:
-      ts_bun: ${{ steps.filter.outputs.ts_bun }}
+      bun: ${{ steps.filter.outputs.bun }}
+      shell: ${{ steps.filter.outputs.shell }}
     steps:
       - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v3
@@ -21,11 +22,31 @@ jobs:
         with:
           # work with push on main branch
           base: ${{ github.ref }}
+          # biome_supported according to https://biomejs.dev/internals/language-support/
           filters: |
-            ts_bun:
+            bun:
               - 'apps/bun-nestjs-pg/**'
+            shell:
+              - '**/*.sh'
+            ghaction:
+              - '.github/workflows/*.{yaml,yml}'
+            yaml: &yaml
+              - '**/*.{yaml,yml}'
+            ts_js: &ts_js
+              - '**/*.{js,jsx,ts,tsx}'
+            biome_supported:
+              - *ts_js
+              - '**/*.json'
+              - '**/*.{html,astro,vue,svelte}'
+              - '**/*.css'
+              - *yaml
+              - '**/*.graphql'
+            markdown:
+              - '**/*.{md,mdx,markdown}'
   shellcheck:
-    name: runner / shellcheck
+    name: shellcheck
+    needs: detect_changes
+    if: ${{ needs.detect_changes.outputs.shell == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,13 +55,17 @@ jobs:
         with:
           reporter: github-pr-review
   shfmt:
-    name: runner / shfmt
+    name: shfmt
+    needs: detect_changes
+    if: ${{ needs.detect_changes.outputs.shell == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: reviewdog/action-shfmt@v1
   actionlint:
-    name: runner / actionlint
+    name: actionlint
+    needs: detect_changes
+    if: ${{ needs.detect_changes.outputs.ghaction == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -49,7 +74,9 @@ jobs:
           reporter: github-pr-review
           level: warning
   yamllint:
-    name: runner / yamllint
+    name: yamllint
+    needs: detect_changes
+    if: ${{ needs.detect_changes.outputs.yaml == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -59,7 +86,7 @@ jobs:
           reporter: github-pr-review
           level: warning
   misspell:
-    name: runner / misspell
+    name: misspell
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -69,7 +96,9 @@ jobs:
           level: warning
           locale: "US"
   biome:
-    name: runner / Biome
+    name: biome
+    needs: detect_changes
+    if: ${{ needs.detect_changes.outputs.biome_supported == 'true' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -81,7 +110,7 @@ jobs:
           reporter: github-pr-review
           fail_on_error: true
   alex:
-    name: runner / alex
+    name: alex
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -90,7 +119,9 @@ jobs:
           reporter: github-pr-review
           level: warning
   tsc:
-    name: runner / tsc
+    name: tsc
+    needs: biome
+    if: ${{ needs.detect_changes.outputs.ts_js == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -101,10 +132,28 @@ jobs:
           reporter: github-pr-review
           fail_on_error: true
           workdir: apps/nestjs
+  unit_tests:
+    name: unit-tests
+    needs: tsc
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+      - run: npm install
+      - run: npm run test:ci
+      - name: Upload apps/nestjs coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: apps/nestjs/coverage/coverage-final.json
+          flags: apps/nestjs
   bun:
-    name: runner / bun
+    name: bun build
     needs: detect_changes
-    if: ${{ needs.detect_changes.outputs.ts_bun == 'true' }}
+    if: ${{ needs.detect_changes.outputs.bun == 'true' }}
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -115,3 +164,13 @@ jobs:
       - run: ls
       - run: bun install
       - run: bun build ./src/main.ts
+  markdown-link-check:
+    name: markdown link check
+    needs: detect_changes
+    if: ${{ needs.detect_changes.outputs.markdown == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          base-branch: main
