@@ -22,6 +22,7 @@ jobs:
         with:
           # work with push on main branch
           base: ${{ github.ref }}
+          # biome_supported according to https://biomejs.dev/internals/language-support/
           filters: |
             bun:
               - 'apps/bun-nestjs-pg/**'
@@ -29,8 +30,17 @@ jobs:
               - '**/*.sh'
             ghaction:
               - '.github/workflows/*.{yaml,yml}'
-            yaml:
-            - '**/*.{yaml,yml}'
+            yaml: &yaml
+              - '**/*.{yaml,yml}'
+            ts_js: &ts_js
+              - '**/*.{js,jsx,ts,tsx}'
+            biome_supported:
+              - *ts_js
+              - '**/*.json'
+              - '**/*.{html,astro,vue,svelte}'
+              - '**/*.css'
+              - *yaml
+              - '**/*.graphql'
   shellcheck:
     name: shellcheck
     needs: detect_changes
@@ -85,6 +95,8 @@ jobs:
           locale: "US"
   biome:
     name: biome
+    needs: detect_changes
+    if: ${{ needs.detect_changes.outputs.biome_supported == 'true' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -106,6 +118,8 @@ jobs:
           level: warning
   tsc:
     name: tsc
+    needs: biome
+    if: ${{ needs.detect_changes.outputs.ts_js == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
