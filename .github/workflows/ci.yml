@@ -31,6 +31,9 @@ jobs:
           filters: |
             bun:
               - 'apps/bun-nestjs-pg/**'
+              - '**/bunfig.toml'
+              - 'apps/bun-nestjs-pg/package.json'
+              - '**/bun.lockb'
             shell:
               - '**/*.sh'
             ghaction:
@@ -39,6 +42,10 @@ jobs:
               - '**/*.{yaml,yml}'
             ts_js: &ts_js
               - '**/*.{js,jsx,ts,tsx}'
+              - '**/package.json'
+              - '**/package-lock.json'
+              - '**/yarn.lock'
+              - '**/pnpm-lock.yaml'
             biome_supported:
               - *ts_js
               - '**/*.json'
