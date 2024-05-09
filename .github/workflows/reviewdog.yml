@@ -9,8 +9,6 @@ on:  # yamllint disable-line rule:truthy
 jobs:
   detect_changes:
     name: detect changes
-    # Only run in pr
-    if: github.ref != 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: read
@@ -20,6 +18,8 @@ jobs:
       - uses: dorny/paths-filter@v3
         id: filter
         with:
+          # work with push on main branch
+          base: ${{ github.ref }}
           filters: |
             ts_bun:
               - 'apps/bun-nestjs-pg/**'
