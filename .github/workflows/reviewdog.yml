@@ -15,6 +15,7 @@ jobs:
     outputs:
       ts_bun: ${{ steps.filter.outputs.ts_bun }}
     steps:
+      - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v3
         id: filter
         with:
