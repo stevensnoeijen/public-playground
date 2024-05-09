@@ -9,4 +9,13 @@ Check out the directories.
 
 This project uses devcontainers, so for the best experience open them in there.
 
+## Windows
+
 If you use Windows have your project inside wsl. This massively speed up the performance.
+
+Setup git (ssh) inside wsl, and add to `~/.bashrc` to the bottom:
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+```
+Restart wsl and the devcontainer.
