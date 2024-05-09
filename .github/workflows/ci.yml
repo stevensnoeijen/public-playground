@@ -25,7 +25,7 @@ jobs:
             ts_bun:
               - 'apps/bun-nestjs-pg/**'
   shellcheck:
-    name: runner / shellcheck
+    name: shellcheck
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,13 +34,13 @@ jobs:
         with:
           reporter: github-pr-review
   shfmt:
-    name: runner / shfmt
+    name: shfmt
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: reviewdog/action-shfmt@v1
   actionlint:
-    name: runner / actionlint
+    name: actionlint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -49,7 +49,7 @@ jobs:
           reporter: github-pr-review
           level: warning
   yamllint:
-    name: runner / yamllint
+    name: yamllint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -59,7 +59,7 @@ jobs:
           reporter: github-pr-review
           level: warning
   misspell:
-    name: runner / misspell
+    name: misspell
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -69,7 +69,7 @@ jobs:
           level: warning
           locale: "US"
   biome:
-    name: runner / Biome
+    name: biome
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -81,7 +81,7 @@ jobs:
           reporter: github-pr-review
           fail_on_error: true
   alex:
-    name: runner / alex
+    name: alex
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -90,7 +90,7 @@ jobs:
           reporter: github-pr-review
           level: warning
   tsc:
-    name: runner / tsc
+    name: tsc
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -102,7 +102,7 @@ jobs:
           fail_on_error: true
           workdir: apps/nestjs
   unit_tests:
-    name: Unit-tests
+    name: unit-tests
     needs: tsc
     runs-on: ubuntu-latest
     steps:
@@ -120,7 +120,7 @@ jobs:
           files: apps/nestjs/coverage/coverage-final.json
           flags: apps/nestjs
   bun:
-    name: runner / bun
+    name: bun build
     needs: detect_changes
     if: ${{ needs.detect_changes.outputs.ts_bun == 'true' }}
     runs-on: ubuntu-latest
