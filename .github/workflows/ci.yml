@@ -101,6 +101,24 @@ jobs:
           reporter: github-pr-review
           fail_on_error: true
           workdir: apps/nestjs
+  unit_tests:
+    name: Unit-tests
+    needs: tsc
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+      - run: npm install
+      - run: npm run test:ci
+      - name: Upload apps/nestjs coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: apps/nestjs/coverage/coverage-final.json
+          flags: apps/nestjs
   bun:
     name: runner / bun
     needs: detect_changes
