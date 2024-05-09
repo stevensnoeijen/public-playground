@@ -41,6 +41,8 @@ jobs:
               - '**/*.css'
               - *yaml
               - '**/*.graphql'
+            markdown:
+              - '**/*.{md,mdx,markdown}'
   shellcheck:
     name: shellcheck
     needs: detect_changes
@@ -162,3 +164,13 @@ jobs:
       - run: ls
       - run: bun install
       - run: bun build ./src/main.ts
+  markdown-link-check:
+    name: markdown link check
+    needs: detect_changes
+    if: ${{ needs.detect_changes.outputs.markdown == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          base-branch: main
