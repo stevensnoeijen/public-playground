@@ -1,7 +1,7 @@
 import * as AWS from '@aws-sdk/client-s3';
 import { Injectable } from '@nestjs/common';
 import { sql } from 'drizzle-orm';
-import type { DrizzleService } from './drizzle/drizzle.service';
+import { DrizzleService } from './drizzle/drizzle.service';
 
 @Injectable()
 export class AppService {
