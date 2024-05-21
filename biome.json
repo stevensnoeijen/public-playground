@@ -31,7 +31,8 @@
       "node_modules",
       "**/node_modules",
       ".pnpm-store",
-      ".turbo"
+      ".turbo",
+      "apps/nextjs-example"
     ]
   },
   "overrides": [

@@ -1,2 +1,3 @@
 packages:
   - 'apps/nestjs'
+  - 'apps/nextjs-example'
