@@ -142,6 +142,13 @@ jobs:
           reporter: github-pr-review
           fail_on_error: true
           workdir: apps/nestjs
+      - uses: EPMatt/reviewdog-action-tsc@v1
+        name: tsc apps/nextjs-example
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          fail_on_error: true
+          workdir: apps/nestjs
   unit_tests:
     name: unit-tests
     needs: tsc
