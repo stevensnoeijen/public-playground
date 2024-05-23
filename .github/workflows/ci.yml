@@ -191,6 +191,8 @@ jobs:
         with:
           base-branch: main
   e2e-test:
+    name: e2e-test
+    needs: unit_tests
     timeout-minutes: 60
     runs-on: ubuntu-latest
     defaults:
