@@ -119,6 +119,23 @@ jobs:
         with:
           reporter: github-pr-review
           fail_on_error: true
+  eslint:
+    name: eslint
+    runs-on: ubuntu-latest
+    needs: detect_changes
+    if: ${{ needs.detect_changes.outputs.ts_js == 'true' }}
+    permissions:
+      contents: read
+      pull-requests: write
+    defaults:
+      run:
+        working-directory: ./apps/nextjs-example
+    steps:
+      - uses: actions/checkout@v4
+      - uses: reviewdog/action-eslint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
   alex:
     name: alex
     runs-on: ubuntu-latest
