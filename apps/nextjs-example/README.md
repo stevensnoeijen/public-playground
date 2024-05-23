@@ -1,6 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 Deployed to vercel though workflow job [nextjs-example](https://github.com/stevensnoeijen/playground/blob/1b2e961786e60187a7a2ddd765f5afc3acd265b1/.github/workflows/deploy.yml#L11)
+This requires to have secret variables to be set `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`, `VERCEL_TOKEN`.
 
 ## Getting Started
 
