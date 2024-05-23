@@ -127,15 +127,13 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-    defaults:
-      run:
-        working-directory: ./apps/nextjs-example
     steps:
       - uses: actions/checkout@v4
       - uses: reviewdog/action-eslint@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
+          workdir: ./apps/nextjs-example
   alex:
     name: alex
     runs-on: ubuntu-latest
