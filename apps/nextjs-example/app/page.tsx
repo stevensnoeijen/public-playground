@@ -107,13 +107,6 @@ export default function Home() {
             Instantly deploy your Next.js site to a shareable URL with Vercel.
           </p>
         </a>
-
-        <Image
-      src="https://example.com/hero.jpg"
-      alt="Landscape picture"
-      width={800}
-      height={500}
-    />
       </div>
     </main>
   );
