@@ -1,6 +1,7 @@
 ---
 name: Deploy
 on:  # yamllint disable-line rule:truthy
+  pull_request: # for testing, remove me
   push:
     branches:
       - main
