@@ -10,6 +10,9 @@ on:  # yamllint disable-line rule:truthy
 jobs:
   nextjs-example:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/nextjs-example
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
