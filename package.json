@@ -1,7 +1,7 @@
 {
   "name": "playground",
   "scripts": {
-    "lint": "biome lint .",
+    "lint": "biome lint . && turbo run lint",
     "format": "biome format --write .",
     "check": "biome check --apply .",
     "test:ci": "turbo run test:ci"

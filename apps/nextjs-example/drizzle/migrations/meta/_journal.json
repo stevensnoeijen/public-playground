@@ -1,0 +1,20 @@
+{
+  "version": "6",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1715800274225,
+      "tag": "0000_init_db",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1715801981991,
+      "tag": "0001_delete_users",
+      "breakpoints": true
+    }
+  ]
+}

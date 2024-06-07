@@ -119,6 +119,21 @@ jobs:
         with:
           reporter: github-pr-review
           fail_on_error: true
+  eslint:
+    name: eslint
+    runs-on: ubuntu-latest
+    needs: detect_changes
+    if: ${{ needs.detect_changes.outputs.ts_js == 'true' }}
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: reviewdog/action-eslint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          workdir: ./apps/nextjs-example
   alex:
     name: alex
     runs-on: ubuntu-latest
@@ -137,6 +152,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: EPMatt/reviewdog-action-tsc@v1
         name: tsc apps/nestjs
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          fail_on_error: true
+          workdir: apps/nestjs
+      - uses: EPMatt/reviewdog-action-tsc@v1
+        name: tsc apps/nextjs-example
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
@@ -171,7 +193,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v1
-      - run: ls
       - run: bun install
       - run: bun build ./src/main.ts
   markdown-link-check:
@@ -184,3 +205,27 @@ jobs:
       - uses: gaurav-nelson/github-action-markdown-link-check@v1
         with:
           base-branch: main
+  e2e-test:
+    name: e2e-test
+    needs: unit_tests
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/nextjs-example
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx playwright test
+      - uses: daun/playwright-report-summary@v3
+        if: always()
+        with:
+          report-file: ./apps/nextjs-example/test-results/results.json
