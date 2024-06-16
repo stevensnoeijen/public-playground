@@ -26,6 +26,10 @@ updates:
         patterns:
           - "pg"
           - "@types/pg"
+  - package-ecosystem: "npm"
+    directory: "/apps/nextjs-example"
+    schedule:
+      interval: "monthly"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
