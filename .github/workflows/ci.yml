@@ -185,7 +185,9 @@ jobs:
   bun:
     name: bun build
     needs: biome
-    if: ${{ needs.detect_changes.outputs.bun == 'true' }}
+    # disabled see https://github.com/stevensnoeijen/playground/issues/50
+    if: false
+    # if: ${{ needs.detect_changes.outputs.bun == 'true' }}
     runs-on: ubuntu-latest
     defaults:
       run:
