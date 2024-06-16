@@ -1,7 +1,6 @@
 ---
 name: Deploy
 on:  # yamllint disable-line rule:truthy
-  pull_request: # for testing, remove me
   push:
     branches:
       - main
@@ -17,6 +16,7 @@ jobs:
       APP_DIR: ./apps/nextjs-example
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           cache: npm
@@ -27,6 +27,8 @@ jobs:
           vercel pull --yes --environment=production --cwd $APP_DIR
           --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }} --cwd $APP_DIR
+        run: vercel build
+          --prod --token=${{ secrets.VERCEL_TOKEN }} --cwd $APP_DIR
       - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} --cwd $APP_DIR
+        run: vercel deploy
+          --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} --cwd $APP_DIR
