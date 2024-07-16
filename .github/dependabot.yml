@@ -9,7 +9,7 @@ updates:
       interval: "monthly"
   - package-ecosystem: "npm"
     # https://github.com/dependabot/dependabot-core/issues/6528
-    directory: "/apps/bun-nestjs-pq"
+    directory: "/apps/bun-nestjs-pg"
     schedule:
       interval: "monthly"
     groups:
