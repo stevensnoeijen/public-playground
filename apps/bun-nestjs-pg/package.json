@@ -9,7 +9,7 @@
     "@types/bun": "1.*",
     "@types/pg": "8.11.6",
     "@nestjs/cli": "10.3.2",
-    "@nestjs/testing": "10.3.9"
+    "@nestjs/testing": "10.3.10"
   },
   "dependencies": {
     "@nestjs/common": "10.3.10",
