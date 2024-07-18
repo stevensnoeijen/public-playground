@@ -1,1 +1,1 @@
-Works for node and pnpm
+Works for node
