@@ -6,7 +6,6 @@
     "check": "biome check --apply .",
     "test:ci": "turbo run test:ci"
   },
-  "workspaces": ["packages/*", "apps/*"],
   "devDependencies": {
     "@biomejs/biome": "1.8.1",
     "lefthook": "1.7.2",
