@@ -5,11 +5,7 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
-    schedule:
-      interval: "monthly"
-  - package-ecosystem: "npm"
-    # https://github.com/dependabot/dependabot-core/issues/6528
-    directory: "/apps/bun-nestjs-pg"
+    versioning-strategy: increase
     schedule:
       interval: "monthly"
     groups:
@@ -17,19 +13,6 @@ updates:
         patterns:
           - "pg"
           - "@types/pg"
-  - package-ecosystem: "npm"
-    directory: "/apps/nestjs"
-    schedule:
-      interval: "monthly"
-    groups:
-      pg:
-        patterns:
-          - "pg"
-          - "@types/pg"
-  - package-ecosystem: "npm"
-    directory: "/apps/nextjs-example"
-    schedule:
-      interval: "monthly"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
