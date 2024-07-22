@@ -8,7 +8,7 @@
   "devDependencies": {
     "@types/bun": "1.*",
     "@types/pg": "8.11.6",
-    "@nestjs/cli": "10.3.2",
+    "@nestjs/cli": "10.4.2",
     "@nestjs/testing": "10.3.10"
   },
   "dependencies": {
